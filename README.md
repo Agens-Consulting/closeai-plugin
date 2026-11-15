@@ -6,7 +6,11 @@ com o seu sim.
 
 ## Instalar na app do Claude
 
-1. **Plugin:** em **Customize › Plugins › Add › Add marketplace**, escreva
+O CloseAI corre no **Claude Code**, que vem dentro da app do Claude para computador (Mac ou Windows),
+no separador **Code**. É lá que a análise corre; numa conversa normal do Claude não corre. Precisa de
+um plano pago do Claude (recomendamos o Team).
+
+1. **Plugin:** no separador Code, em **Customize › Plugins › Add › Add marketplace**, escreva
    `Agens-Consulting/closeai-plugin` e instale o plugin **closeai**.
 2. **Ligar a conta:** quando o Claude pedir, entre com a sua conta Google em `app.closeai.pt`.
 3. **Primeiro uso:** peça ao Claude «instala o CloseAI» (ou `/closeai:instalar`) e siga os passos.
