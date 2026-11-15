@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "closeai": {
+      "type": "http",
+      "url": "${CLOSEAI_URL:-https://app.closeai.pt}/mcp"
+    }
+  }
+}
