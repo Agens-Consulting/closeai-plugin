@@ -73,12 +73,9 @@ modelo, se este for menor. O `/closeai:instalar` explica isto mas não mexe no f
 2. O browser abre a página do CloseAI: entra com o Google, com a conta convidada.
 3. Corre `/closeai:instalar`.
 
-O endereço do servidor é `https://app.closeai.pt` por omissão. Para apontar a outro (por exemplo, o
-servidor local da Agens), arranca o Claude Code com a variável `CLOSEAI_URL`:
-
-```bash
-CLOSEAI_URL=http://localhost:3100 claude
-```
+O plugin liga-se a `https://app.closeai.pt/mcp`. Para testar contra outro servidor (por exemplo, o
+local da Agens), junte-o à parte como conector personalizado (Customize › Connectors › Add custom
+connector) ou, no Claude Code, com `claude mcp add`.
 
 ### Alternativa: token de acesso, sem OAuth
 
