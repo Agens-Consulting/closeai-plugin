@@ -21,9 +21,9 @@ Vai contando, para o resumo final: `vistas`, `novas`, `analisadas`, `recusadas`,
 
 ## 1. Licença
 
-`estado_da_licenca` com `versao_do_plugin: "0.1.0"`.
+`estado_da_licenca` com `versao_do_plugin: "0.1.1"`.
 - `ativa: false` → **para**: chama `sinal_de_vida` com `erro: "licença suspensa"` e termina.
-- `versao_minima_do_plugin` acima de `0.1.0` → para da mesma forma, com `erro: "plugin desatualizado"`.
+- `versao_minima_do_plugin` acima de `0.1.1` → para da mesma forma, com `erro: "plugin desatualizado"`.
 - Sem `fontes` → não há nada a procurar; termina sem `sinal_de_vida` (não há fonte a que o dar) e
   diz numa linha que falta `/closeai:instalar fonte`.
 
@@ -43,7 +43,7 @@ Vai contando, para o resumo final: `vistas`, `novas`, `analisadas`, `recusadas`,
 4. **Depois, para cada um dos `novos`, até ao que sobrar do `teto`** (3 se não vier): abre o documento e faz o que
    `/closeai:analisar` faz — ler o texto do resultado do conector com Bash/`jq` se vier num ficheiro,
    conferir que o fim da reunião chegou, filtros baratos, `abrir_reuniao` (com `origem: { fonte,
-   id_na_fonte, hash }`, `versao_do_plugin: "0.1.0"`, `plataforma: "claude-desktop"`) e, acima de
+   id_na_fonte, hash }`, `versao_do_plugin: "0.1.1"`, `plataforma: "claude-desktop"`) e, acima de
    20 000 caracteres, por partes com `anexar_transcricao`, os passos do plano pelos subagentes
    `closeai:*` (os blocos da normalização e os grupos de KPIs em paralelo), e `fechar_reuniao`.
    - Uma transcrição que parece cortada no fim → não a analises: conta em `falhadas`, com o `erro`
@@ -65,7 +65,7 @@ utilizador trata-as numa sessão com `/closeai:crm`.
 ## 4. Sinal de vida (sempre)
 
 Para cada fonte, `sinal_de_vida` com `fonte`, `resumo` (`vistas`, `novas`, `analisadas`,
-`recusadas`, `falhadas`, `calibracao`, `erro`) e `versao_do_plugin: "0.1.0"`. Também quando algo
+`recusadas`, `falhadas`, `calibracao`, `erro`) e `versao_do_plugin: "0.1.1"`. Também quando algo
 correu mal a meio: nesse caso, com o `erro` numa frase.
 
 Termina com uma linha: quantas reuniões novas, quantas analisadas, e se há alguma coisa a tratar.

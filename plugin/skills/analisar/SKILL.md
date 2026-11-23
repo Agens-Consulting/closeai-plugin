@@ -68,7 +68,7 @@ Chama `abrir_reuniao` com:
 - `titulo`: como o utilizador chama a reunião (ou o nome do ficheiro);
 - `acontecida_em`: a data em ISO 8601, se a souberes;
 - `origem`: `{ fonte, id_na_fonte, hash }` se veio de uma fonte registada (omite se foi colada);
-- `versao_do_plugin`: `"0.1.0"`;
+- `versao_do_plugin`: `"0.1.1"`;
 - `plataforma`: `claude-code` ou `claude-desktop`.
 
 Se vier `recusada: true`, mostra o `porque` do servidor tal como vem (por exemplo, «isto é um resumo,

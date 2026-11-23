@@ -14,12 +14,12 @@ curto. Fala em português de Portugal.
 
 ## O que verificar
 
-1. **Ligação e licença:** `estado_da_licenca` com `versao_do_plugin: "0.1.0"`.
+1. **Ligação e licença:** `estado_da_licenca` com `versao_do_plugin: "0.1.1"`.
    - Ferramenta inexistente ou a pedir autenticação → «O CloseAI não está ligado. Abre `/mcp`,
      escolhe `plugin:closeai:closeai` e Authenticate (entra com o Google).»
    - `ativa: false` → mostra a `mensagem` do servidor tal como vem. Diz que o que já existe continua
      visível na app.
-   - `versao_minima_do_plugin` acima de `0.1.0` → «Atualiza o plugin: `/plugin` › Installed ›
+   - `versao_minima_do_plugin` acima de `0.1.1` → «Atualiza o plugin: `/plugin` › Installed ›
      closeai › Update.»
 2. **Fontes e automação:** das `fontes` que vierem em `estado_da_licenca`, para cada uma: a
    ferramenta, onde caem as transcrições, a `ultima_corrida` e a `ultima_analise`.

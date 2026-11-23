@@ -1,6 +1,6 @@
 {
   "name": "closeai",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CloseAI: análise de reuniões comerciais no teu Claude. Lê a transcrição, analisa-a passo a passo com as instruções do servidor CloseAI, mostra o que se sabe do negócio e prepara o que escrever no CRM, sempre com confirmação.",
   "author": {
     "name": "Agens",

@@ -11,41 +11,29 @@ Vais pôr o CloseAI a funcionar para este utilizador, por esta ordem. Se ele ped
 (`$ARGUMENTS` = `perfil`, `fonte`, `crm` ou `agendar`), salta para essa parte depois do passo 1.
 
 As ferramentas do CloseAI chamam-se `mcp__plugin_closeai_closeai__<nome>`; aqui escrevem-se pelo nome
-curto. Para escolhas, usa a pergunta com opções (AskUserQuestion); se não estiver disponível, uma lista
-numerada. **Nada se grava sem o utilizador confirmar o resumo.** Fala em português de Portugal.
+curto. **Nada se grava sem o utilizador confirmar o resumo.** Fala em português de Portugal.
 
-## Antes de tudo: limites para reuniões longas
+## Como falar durante a configuração (manda sobre tudo o resto)
 
-Uma reunião longa não cabe nos limites por omissão do Claude Code (a resposta do modelo e o resultado
-de uma ferramenta MCP, por omissão 25 000 tokens). **Não edites o ficheiro tu**: explica e pede ao
-utilizador que o faça.
-
-1. Pede-lhe que abra `~/.claude/settings.json` (se não existir, cria-o com `{}`) e acrescente, ao
-   nível de cima:
-
-   ```json
-   "env": {
-     "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "64000",
-     "MAX_MCP_OUTPUT_TOKENS": "100000"
-   }
-   ```
-
-   Se já houver um bloco `"env"`, junta as duas linhas lá dentro. O ficheiro é JSON estrito: sem
-   comentários e sem vírgula a mais.
-2. Depois, que feche e volte a abrir o Claude Desktop (ou o Claude Code no terminal). O separador Code
-   do Desktop e o terminal leem o mesmo ficheiro; as conversas normais do Claude Desktop (fora do
-   separador Code) não o leem. Se a variável já estiver definida no ambiente com que o Desktop arranca,
-   essa ganha ao ficheiro.
-3. Se ele não quiser agora, segue: só as reuniões longas é que podem ficar cortadas.
+- **Mensagens curtíssimas:** no máximo duas frases por mensagem. Sem listas de passos, sem explicar o
+  que vais fazer a seguir, sem repetir o que o utilizador disse. Começa logo pela primeira pergunta.
+- **Uma pergunta de cada vez**, sempre com a ferramenta de perguntas com opções (AskUserQuestion),
+  com 2 a 4 opções clicáveis e a recomendada em primeiro. Quando a resposta for livre (o que vendem,
+  por exemplo), dá na mesma 2 ou 3 opções de exemplo: o utilizador escolhe uma ou escreve a sua em
+  «Other». Só sem essa ferramenta é que usas uma lista numerada curta.
+- Os resumos para confirmar são curtos: uma tabela pequena ou 3 a 5 linhas, e a pergunta «Guardo
+  assim?» com as opções Guardar / Corrigir.
+- O trabalho de bastidores (ler a licença, ler o CRM, procurar a pasta) faz-se sem o anunciar; mostra
+  só o resultado, numa frase.
 
 ## 1. Licença e ligação
 
-1. Chama `estado_da_licenca` com `versao_do_plugin: "0.1.0"`.
+1. Chama `estado_da_licenca` com `versao_do_plugin: "0.1.1"`.
    - Se a ferramenta não existir ou pedir autenticação: diz ao utilizador para abrir `/mcp`, escolher
      `plugin:closeai:closeai` e «Authenticate» (entra com a conta Google da organização). Depois volta
      a correr `/closeai:instalar`. Para aqui.
    - Se `ativa` vier `false`: mostra a `mensagem` do servidor tal como vem e para aqui.
-   - Se `versao_minima_do_plugin` for maior do que `0.1.0`: diz para atualizar o plugin
+   - Se `versao_minima_do_plugin` for maior do que `0.1.1`: diz para atualizar o plugin
      (`/plugin` › Installed › closeai › Update) e para aqui.
 2. Diz em uma frase a que organização ficou ligado (`organizacao`).
 
@@ -53,8 +41,8 @@ utilizador que o faça.
 
 1. Chama `ler_perfil`. Se já houver perfil, mostra um resumo curto e pergunta se quer revê-lo ou
    seguir em frente.
-2. Chama `perguntas_de_onboarding` e faz as perguntas que vierem, **uma ou duas de cada vez**, pela
-   ordem do servidor. Usa as `opcoes` quando vierem; aceita respostas livres.
+2. Chama `perguntas_de_onboarding` e faz as perguntas que vierem, **uma de cada vez**, pela ordem do
+   servidor, com opções clicáveis (usa as `opcoes` quando vierem; senão, tira 2 ou 3 do `exemplo`).
 3. O perfil é sobre o negócio (o que vendem, a quem, as etapas, os tipos de reunião, as objeções
    frequentes, a duração mínima de reunião a analisar). **Não aceites listas de contactos nem dados
    pessoais de clientes**: se o utilizador os colar, diz que não entram no perfil e não os guardes.
@@ -112,7 +100,12 @@ utilizador. Para isso precisas de saber **onde vive cada coisa** nesse CRM. Isso
 ## 5. A automação de hora a hora (Claude Desktop)
 
 A automação é uma **tarefa local agendada do Claude Desktop**, que corre `/closeai:automacao` (uma skill
-deste plugin): só corre com a app aberta e o computador acordado. As tarefas na nuvem não carregam plugins, por isso não servem. Dá estes passos, exatamente:
+deste plugin): só corre com a app aberta e o computador acordado. As tarefas na nuvem não carregam plugins, por isso não servem.
+
+Pergunta só: «Quer que as reuniões novas se analisem sozinhas, de hora a hora?» (Sim / Agora não). Com
+Sim e com a ferramenta de tarefas agendadas do Desktop, **cria-a tu** («corre `/closeai:automacao` de
+hora a hora, só neste computador») e diz numa frase que ficou criada e que convém ligar «Keep computer
+awake». Só se não tiveres essa ferramenta é que mostras os passos à mão, exatamente:
 
 1. Abre o **Claude Desktop** e vai ao separador **Code**.
 2. Na barra lateral, clica em **Scheduled** (ou em **More** › **Scheduled**; em versões antigas chama-se
@@ -131,10 +124,6 @@ deste plugin): só corre com a app aberta e o computador acordado. As tarefas na
    pararem à espera.
 10. Em **Settings** › **Desktop app** (ou **This computer** › **System**), liga **Keep computer awake**.
     Fechar a tampa do portátil adormece-o na mesma.
-
-Se o utilizador preferir, podes também criar a tarefa por ele, se tiveres a ferramenta de tarefas
-agendadas do Desktop: «corre `/closeai:automacao` de hora a hora, só neste computador». Confirma
-antes de a criar.
 
 A app do CloseAI mostra «ligado» quando receber o primeiro sinal de vida, e avisa se ficar 48 horas
 sem sinal em dias úteis.
